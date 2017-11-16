@@ -19,7 +19,6 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdlib.h> 
 /*
  *Variabili globali
  Tj indica la quantità di denaro della banca J
@@ -75,13 +74,13 @@ void *deposita(void* arg){
 
 /*thread della "banca dimu italia", periodicamente tenta di stampare lo stato delle banche*/
 void *watch(void *arg){
-
+	while(1) {
 	pthread_mutex_lock(&mutexdata);
 		printf("Somma totale: %d", banks[1].B + banks[2].B + banks[3].B );
 		printf("OP1: %d \tOP2: %d \tOP3: %d", banks[1].N, banks[2].N, banks[3].N);
 	pthread_mutex_unlock(&mutexdata);
 	sleep(30);
-
+	}
 }
 
 int main(void) {
